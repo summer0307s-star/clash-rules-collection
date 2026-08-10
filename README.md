@@ -14,59 +14,89 @@
 
 ## 在 Clash Verge 中使用
 
-在配置文件的 `rule-providers` 段落添加：
+### 1. 添加「GitHub规则」代理组
+
+在 `proxy-groups` 段落添加：
+
+```yaml
+- name: GitHub规则
+  type: select
+  proxies:
+    - 默认
+    - 自动选择
+    - 香港
+    - 中国台湾
+    - 日本
+    - 韩国
+    - 新加坡
+    - 美国
+    - 英国
+    - 手动选择
+    - DIRECT
+```
+
+### 2. 添加 rule-providers
 
 ```yaml
 rule-providers:
-  custom-domains:
+  github-rules-custom-domains:
     type: http
     behavior: domain
     format: text
     url: "https://raw.githubusercontent.com/summer0307s-star/clash-rules-collection/main/rules/custom-domains.list"
-    path: ./ruleset/custom-domains.list
+    path: ./ruleset/github-rules-custom-domains.list
     interval: 86400
-  dino-chat:
+  github-rules-dino-chat:
     type: http
     behavior: domain
     format: text
     url: "https://raw.githubusercontent.com/summer0307s-star/clash-rules-collection/main/rules/dino-chat.list"
-    path: ./ruleset/dino-chat.list
+    path: ./ruleset/github-rules-dino-chat.list
     interval: 86400
-  ai:
+  github-rules-ai:
     type: http
     behavior: domain
     format: text
     url: "https://raw.githubusercontent.com/summer0307s-star/clash-rules-collection/main/rules/ai.list"
-    path: ./ruleset/ai.list
+    path: ./ruleset/github-rules-ai.list
     interval: 86400
-  binance:
+  github-rules-binance:
     type: http
     behavior: domain
     format: text
     url: "https://raw.githubusercontent.com/summer0307s-star/clash-rules-collection/main/rules/binance.list"
-    path: ./ruleset/binance.list
+    path: ./ruleset/github-rules-binance.list
     interval: 86400
-  tailscale:
+  github-rules-tailscale:
     type: http
     behavior: domain
     format: text
     url: "https://raw.githubusercontent.com/summer0307s-star/clash-rules-collection/main/rules/tailscale.list"
-    path: ./ruleset/tailscale.list
+    path: ./ruleset/github-rules-tailscale.list
     interval: 86400
 ```
 
-在 `rules` 段落引用：
+### 3. 在 rules 中引用
 
 ```yaml
 rules:
-  - RULE-SET,custom-domains,GitHub规则
-  - RULE-SET,dino-chat,GitHub规则
-  - RULE-SET,ai,Ai
-  - RULE-SET,binance,BI
-  - RULE-SET,tailscale,全球直连
+  - RULE-SET,github-rules-custom-domains,GitHub规则
+  - RULE-SET,github-rules-dino-chat,GitHub规则
+  - RULE-SET,github-rules-ai,Ai
+  - RULE-SET,github-rules-binance,BI
+  - RULE-SET,github-rules-tailscale,全球直连
 ```
 
 ## 说明
 
 - 本仓库仅包含**规则**（域名、进程路径），**不包含任何代理节点或订阅信息**。
 - 欢迎补充更多应用规则， especially for `com.dino.chat` 这类 iOS App 的进程路径分流。
+
+## 推荐的 GitHub 规则源
+
+| 仓库 | 说明 |
+|---|---|
+| [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat) | Mihomo/Clash 官方规则集 |
+| [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules) | 主流 Clash Premium 规则集 |
+| [Aethersailor/Custom_OpenClash_Rules](https://github.com/Aethersailor/Custom_OpenClash_Rules) | OpenClash 综合配置 |
+| [zhanyeye/clash-rules-lite](https://github.com/zhanyeye/clash-rules-lite) | 轻量自定义规则方案 |
