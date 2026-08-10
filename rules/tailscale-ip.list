@@ -1,0 +1,2 @@
+# Tailscale 网段（ipcidr 类型规则集，CGNAT 100.64.0.0/10）
+IP-CIDR,100.64.0.0/10,no-resolve
