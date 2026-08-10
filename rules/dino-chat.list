@@ -1,14 +1,14 @@
 # Dino (com.dino.chat) 域名分流规则
 # 数据来源：本机 Clash 实时连接抓包（2026-08-10），非第三方分享
-# 该 App 太小众，GitHub 上无人整理过现成规则，以下域名均为实测确认
 #
-# —— 走代理的域名（API / 海外）——
-dinoapi.com
+# 重要：rule-provider 的 behavior=domain 遵循 geosite 语义
+#   - 无前缀  dinoapi.com      => 仅精确匹配 dinoapi.com 本身
+#   - +.前缀  +.dinoapi.com     => 匹配自身及所有子域（DOMAIN-SUFFIX）
+# 实测 Dino API 域名为子域 sg-data.dinoapi.com，故必须用 +. 前缀
++.dinoapi.com
 #
-# —— 说明 ——
-# 1. Dino 真实 API 域名为 *.dinoapi.com（实测连接：sg-data.dinoapi.com）
-# 2. 国内资源域名 wanzhiwangluo.cn（实测 res1.wanzhiwangluo.cn）
-#    已自动命中 cn_domain 规则集走国内直连，无需在此列出
-# 3. 强烈建议同时配合进程级兜底规则，覆盖 IP 直连 / UDP 流量：
-#    PROCESS-PATH,*/Wrapper/Dino.app/*,漏网之鱼
-#    （本地 Clash 配置已添加此条，Dino 全部流量兜底走香港节点）
+# 国内资源域名 res1.wanzhiwangluo.cn 已自动命中 cn_domain 规则集走国内直连，无需在此列出
+#
+# 进程级兜底（覆盖 IP 直连 / UDP）：
+#   PROCESS-PATH,*/Wrapper/Dino.app/*,漏网之鱼
+#   （本地 Clash 配置已添加，Dino 全部流量兜底走香港节点）
