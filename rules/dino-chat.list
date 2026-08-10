@@ -1,0 +1,7 @@
+# Dino (com.dino.chat) 相关规则
+# 建议配合 PROCESS-PATH 规则使用：
+# - PROCESS-PATH,*/Wrapper/Dino.app/*,漏网之鱼
+#
+# 以下域名根据实际抓包补充
+dinochat.app
+dinocdn.net

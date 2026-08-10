@@ -1,0 +1,4 @@
+# Tailscale 相关域名
+DOMAIN-SUFFIX,ts.net
+DOMAIN-SUFFIX,tailscale.com
+IP-CIDR,100.64.0.0/10,no-resolve
